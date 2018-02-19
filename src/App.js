@@ -9,7 +9,8 @@ class App extends Component {
       <div className="App">
         <h1> Ejemplo React </h1>
         <p> Funcionamiento de parrafo </p>
-        <Persona />
+        <Persona nombre = "Jose" edad = "23"/>
+        <Persona nombre = "Alberto" edad = "25" >Tengo informacion adicional</Persona>
       </div>
     );
 
