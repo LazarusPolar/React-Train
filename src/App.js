@@ -8,13 +8,13 @@ class App extends Component {
   state = {
     personas: [
       {
-        nombre: 'Jose', edad: 23
+        id: 'asasda', nombre: 'Jose', edad: 23
       },
       {
-        nombre: 'Alberto', edad: 28
+        id: 'asdas23', nombre: 'Alberto', edad: 28
       },
       {
-        nombre: 'Diana', edad: 19
+        id: 'sa2321', nombre: 'Diana', edad: 19
       }
     
     ], mostarPersonas: false
@@ -41,21 +41,23 @@ class App extends Component {
   }
 
   // "Event" se encarga de revisar que el componente se este utilizando 
-  /*
-  nombreCambiadoHandler = (event) => {
+  
+  nombreCambiadoHandler = (event, id) => {
+    const personaIndice = this.state.personas.findIndex(p => {
+      return p.id === id;
+    });
+
+    const persona = {...this.state.personas[personaIndice]};
+
+    persona.nombre = event.target.value;
+
+    const personas = [...this.state.personas]
+
+    personas[personaIndice] = persona;
+
     this.setState({
-    personas: [
-      {
-        nombre: 'Alejandro', edad: 22
-      },
-      {
-        nombre: event.target.value, edad: 34
-      },
-      {
-        nombre: 'Borgia', edad: 31
-      }
-    ]
-  })}*/
+    personas: personas
+  })}
 
   borraPersonasHandler = (indicePersona) => {
     // Copia el arreglo completo a la variable. En este caso a const peronas
@@ -89,12 +91,12 @@ class App extends Component {
 
    // Manera elegante de renderizado para condicionales
    // Se utiliza map para poder convertir el JSON a un arreglo JS y poder utilizar la informacion
-   // persona es el array, index el indice seleccionado del mismo
+   // persona es el elemento del array, index el indice seleccionado del mismo
    if(this.state.mostarPersonas){
       personas = (
         <div>
         {this.state.personas.map((persona, index) => {
-          return <Persona nombre = {persona.nombre} edad = {persona.edad} click = {() => this.borraPersonasHandler(index)} />
+          return <Persona nombre = {persona.nombre} edad = {persona.edad} click = {() => this.borraPersonasHandler(index)} key ={persona.id} cambio = {(event) => this.nombreCambiadoHandler(event, persona.id)}/>
         })}
         </div>
       )
