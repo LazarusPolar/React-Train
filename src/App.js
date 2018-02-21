@@ -41,6 +41,7 @@ class App extends Component {
   }
 
   // "Event" se encarga de revisar que el componente se este utilizando 
+  /*
   nombreCambiadoHandler = (event) => {
     this.setState({
     personas: [
@@ -54,7 +55,14 @@ class App extends Component {
         nombre: 'Borgia', edad: 31
       }
     ]
-  })}
+  })}*/
+
+  borraPersonasHandler = (indicePersona) => {
+    const personas = this.state.personas;
+    // Borra un solo valor del indice enviado en el parametro de la funcion
+    personas.splice(indicePersona, 1)
+    this.setState({personas: personas})
+  }
 
     mostrarPersonasHandler= () => {
       const muestra = this.state.mostarPersonas;
@@ -77,11 +85,12 @@ class App extends Component {
 
    // Manera elegante de renderizado para condicionales
    // Se utiliza map para poder convertir el JSON a un arreglo JS y poder utilizar la informacion
+   // persona es el array, index el indice seleccionado del mismo
    if(this.state.mostarPersonas){
       personas = (
         <div>
-        {this.state.personas.map(persona => {
-          return <Persona nombre = {persona.nombre} edad = {persona.edad} />
+        {this.state.personas.map((persona, index) => {
+          return <Persona nombre = {persona.nombre} edad = {persona.edad} click = {() => this.borraPersonasHandler(index)} />
         })}
         </div>
       )
