@@ -17,7 +17,7 @@ class App extends Component {
         nombre: 'Diana', edad: 19
       }
     
-    ]
+    ], mostarPersonas: false
   }
 
   cambiaNombreHandler = (nuevoNombre) => {
@@ -53,7 +53,13 @@ class App extends Component {
       {
         nombre: 'Borgia', edad: 31
       }
-    ]})}
+    ]
+  })}
+
+    mostrarPersonasHandler= () => {
+      const muestra = this.state.mostarPersonas;
+      this.setState({mostarPersonas: !muestra})
+    }
   
 
   render() {
@@ -75,17 +81,19 @@ class App extends Component {
         <h1> Ejemplo React </h1>
         <p> Funcionamiento de parrafo </p>
 
-        <button style={style} onClick = {() => this.cambiaNombreHandler('Leopoldo')}>Cambiar nombre </button>
+        <button style={style} onClick = {this.mostrarPersonasHandler}>Muestra personas </button>
+        { 
+          this.state.mostarPersonas === true ? 
+        <div>
         <Persona nombre = {this.state.personas[0].nombre} edad = {this.state.personas[0].edad}/>
-
         <Persona nombre = {this.state.personas[1].nombre} 
         edad = {this.state.personas[1].edad} 
         click={this.cambiaNombreHandler.bind(this, "Marcos")} 
         cambio = {this.nombreCambiadoHandler}> 
         Tengo informacion adicional 
         </Persona>
-
         <Persona nombre = {this.state.personas[2].nombre} edad = {this.state.personas[2].edad}/>
+        </div>: null}
       </div>
     );
 
