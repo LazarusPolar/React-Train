@@ -76,17 +76,13 @@ class App extends Component {
    let personas = null;
 
    // Manera elegante de renderizado para condicionales
+   // Se utiliza map para poder convertir el JSON a un arreglo JS y poder utilizar la informacion
    if(this.state.mostarPersonas){
       personas = (
         <div>
-        <Persona nombre = {this.state.personas[0].nombre} edad = {this.state.personas[0].edad}/>
-        <Persona nombre = {this.state.personas[1].nombre} 
-        edad = {this.state.personas[1].edad} 
-        click={this.cambiaNombreHandler.bind(this, "Marcos")} 
-        cambio = {this.nombreCambiadoHandler}> 
-        Tengo informacion adicional 
-        </Persona>
-        <Persona nombre = {this.state.personas[2].nombre} edad = {this.state.personas[2].edad}/>
+        {this.state.personas.map(persona => {
+          return <Persona nombre = {persona.nombre} edad = {persona.edad} />
+        })}
         </div>
       )
    }
