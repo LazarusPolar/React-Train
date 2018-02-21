@@ -58,7 +58,11 @@ class App extends Component {
   })}*/
 
   borraPersonasHandler = (indicePersona) => {
-    const personas = this.state.personas;
+    // Copia el arreglo completo a la variable. En este caso a const peronas
+    //const personas = this.state.personas.slice();
+    //Opcional! Mismo comportamiento que la aproximacion anterior
+    const personas = [...this.state.personas]
+
     // Borra un solo valor del indice enviado en el parametro de la funcion
     personas.splice(indicePersona, 1)
     this.setState({personas: personas})
