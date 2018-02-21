@@ -41,12 +41,13 @@ class App extends Component {
   }
 
   // "Event" se encarga de revisar que el componente se este utilizando 
-  
+
   nombreCambiadoHandler = (event, id) => {
     const personaIndice = this.state.personas.findIndex(p => {
       return p.id === id;
     });
 
+    // Se hace la copia del arreglo ya que, trabajar directamente con el, es una mala practica
     const persona = {...this.state.personas[personaIndice]};
 
     persona.nombre = event.target.value;
