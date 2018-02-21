@@ -73,17 +73,11 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-    // Se llama al parametro this y state para obtener los datos a ingresar 
-    // Se pueden pasar handler de onClick a traves de las propiedades de parametros 
-    // Es recomendable usar siempre el "bind()"
-    return (
-      <div className="App">
-        <h1> Ejemplo React </h1>
-        <p> Funcionamiento de parrafo </p>
+   let personas = null;
 
-        <button style={style} onClick = {this.mostrarPersonasHandler}>Muestra personas </button>
-        { 
-          this.state.mostarPersonas === true ? 
+   // Manera elegante de renderizado para condicionales
+   if(this.state.mostarPersonas){
+      personas = (
         <div>
         <Persona nombre = {this.state.personas[0].nombre} edad = {this.state.personas[0].edad}/>
         <Persona nombre = {this.state.personas[1].nombre} 
@@ -93,7 +87,19 @@ class App extends Component {
         Tengo informacion adicional 
         </Persona>
         <Persona nombre = {this.state.personas[2].nombre} edad = {this.state.personas[2].edad}/>
-        </div>: null}
+        </div>
+      )
+   }
+
+    // Se llama al parametro this y state para obtener los datos a ingresar 
+    // Se pueden pasar handler de onClick a traves de las propiedades de parametros 
+    // Es recomendable usar siempre el "bind()"
+    return (
+      <div className="App">
+        <h1> Ejemplo React </h1>
+        <p> Funcionamiento de parrafo </p>
+        <button style={style} onClick = {this.mostrarPersonasHandler}>Muestra personas </button>
+        {personas}
       </div>
     );
 
